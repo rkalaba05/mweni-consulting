@@ -1610,3 +1610,11 @@ h1, h2, h3, p, li, .region-countries, .stat-label { overflow-wrap: break-word; }
   .region-row { flex-wrap: wrap; gap: 4px 16px; }
   .region-row > :first-child { min-width: 0; }
 }
+
+/* ===== ACADEMIC ADVISING, GRANTS & PARTNERSHIPS (Services page) ===== */
+.academic-section { padding: var(--section-v) 0; background: var(--ivory-light); border-top: 1px solid rgba(42,31,26,0.1); }
+.academic-header { max-width: 760px; margin-bottom: 48px; }
+.academic-grid .service-card { background: var(--sand-light); }
+.academic-grid .service-card:hover { background: var(--forest-green); }
+.academic-grid .service-icon { background: var(--warm-ochre); box-shadow: inset 0 0 0 10px var(--warm-ochre), inset 0 0 0 20px var(--clay-rose); }
+@media (max-width: 900px) { .academic-grid { grid-template-columns: minmax(0, 1fr); } }
