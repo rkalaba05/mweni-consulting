@@ -179,7 +179,7 @@ h1, h2, h3, h4 {
 
 .hero-title {
   font-family: var(--font-display);
-  font-size: clamp(3rem, 5vw, 5.5rem);
+  font-size: clamp(2.6rem, 4.4vw, 5.5rem);
   font-weight: 300;
   color: var(--ivory-light);
   line-height: 1.05;
@@ -1512,4 +1512,101 @@ a.text-link { text-decoration: underline; text-underline-offset: 3px; }
   .nav-logo { font-size: 1rem; }
   .nav-logo .logo-mark { width: 28px; height: 28px; }
   .nav-toggle { padding: 6px 10px; }
+}
+
+/* ===== TEAM BIO CARD: click to pop out and turn to the bio ===== */
+.team-card--bio { position: relative; transition: transform .25s ease, box-shadow .25s ease; }
+.team-card--bio:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(42,31,26,.14); }
+.team-card--bio .team-photo { cursor: pointer; }
+.team-actions { margin-top: 18px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.bio-open {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--forest-green); color: var(--ivory-light);
+  border: 0; border-radius: 2px; padding: 12px 18px; cursor: pointer;
+  font-family: var(--font-body); font-size: 0.8rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+}
+.bio-open svg { width: 18px; height: 18px; }
+.bio-open:hover { background: var(--deep-earth); }
+/* the whole card opens the bio; the LinkedIn icon sits above that layer */
+.bio-open::after { content: ""; position: absolute; inset: 0; }
+.team-linkedin { position: relative; z-index: 1; display: inline-block; line-height: 0; }
+.team-linkedin img { width: 32px; height: 32px; aspect-ratio: auto; }
+
+.bio-dialog {
+  border: 0; padding: 0; background: transparent;
+  width: min(760px, calc(100vw - 32px)); max-width: none;
+  max-height: calc(100vh - 48px);
+  margin: auto; overflow: visible;
+  perspective: 1400px;
+}
+.bio-dialog::backdrop { background: rgba(30,21,18,.72); }
+.bio-panel {
+  position: relative;
+  background: var(--ivory-light);
+  border-top: 6px solid var(--forest-green);
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  padding: 40px 44px 44px;
+  transform-origin: center;
+}
+.bio-dialog[open] .bio-panel { animation: bio-turn .55s cubic-bezier(.2,.75,.25,1) both; }
+.bio-dialog[open]::backdrop { animation: bio-fade .3s ease both; }
+@keyframes bio-turn {
+  0%   { opacity: 0; transform: scale(.55) rotateY(-90deg); }
+  60%  { opacity: 1; }
+  100% { opacity: 1; transform: scale(1) rotateY(0); }
+}
+@keyframes bio-fade { from { opacity: 0; } to { opacity: 1; } }
+.bio-close {
+  position: absolute; top: 14px; right: 14px;
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 2px solid var(--deep-earth); background: var(--ivory-light); color: var(--deep-earth);
+  display: grid; place-items: center; cursor: pointer;
+}
+.bio-close svg { width: 20px; height: 20px; }
+.bio-close:hover { background: var(--deep-earth); color: var(--ivory-light); }
+.bio-head { display: flex; align-items: center; gap: 24px; padding-right: 48px; }
+.bio-photo { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; flex: 0 0 auto; box-shadow: 0 0 0 5px var(--clay-rose); }
+.bio-head h2 { font-family: var(--font-display); font-weight: 400; font-size: 1.9rem; line-height: 1.2; color: var(--deep-earth); }
+.bio-head .team-linkedin { margin-top: 12px; }
+.bio-body { margin-top: 28px; border-top: 1px solid rgba(42,31,26,.15); padding-top: 24px; }
+.bio-body p { font-size: 1rem; line-height: 1.8; color: rgba(42,31,26,.85); margin-bottom: 18px; }
+.bio-body h3 {
+  margin-top: 28px; font-family: var(--font-body); font-size: .8rem; font-weight: 700;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--forest-green);
+}
+.bio-awards { list-style: none; margin-top: 14px; display: grid; gap: 10px; }
+.bio-awards li { position: relative; padding-left: 22px; line-height: 1.6; color: var(--deep-earth); }
+.bio-awards li::before { content: ""; position: absolute; left: 0; top: .6em; width: 10px; height: 10px; border-radius: 50%; background: var(--warm-ochre); }
+body.bio-is-open { overflow: hidden; }
+@media (max-width: 600px) {
+  .bio-panel { padding: 64px 22px 28px; }
+  .bio-head { flex-direction: column; align-items: flex-start; gap: 16px; padding-right: 0; }
+  .bio-photo { width: 96px; height: 96px; }
+  .bio-head h2 { font-size: 1.55rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bio-dialog[open] .bio-panel, .bio-dialog[open]::backdrop { animation: none; }
+  .team-card--bio, .team-card--bio:hover { transition: none; transform: none; }
+}
+
+/* ===== FIT EVERY SCREEN: text resizes to the device and never runs off the edge ===== */
+#hero { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.hero-left, .reach-inner > *, .stats-grid > *, .region-row > * { min-width: 0; }
+h1, h2, h3, p, li, .region-countries, .stat-label { overflow-wrap: break-word; }
+@media (max-width: 900px) {
+  #hero { grid-template-columns: minmax(0, 1fr); }
+  .hero-title { font-size: clamp(2rem, 9.6vw, 4.5rem); }
+  .foundation-grid, .services-header, .reach-inner, .founder-grid,
+  .clients-intro, .contact-inner, .services-grid, .recognition-grid { grid-template-columns: minmax(0, 1fr); }
+  .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .section-heading { font-size: clamp(1.75rem, 7.5vw, 3rem); }
+  .page-banner h1 { font-size: clamp(2rem, 9vw, 3.6rem); }
+}
+@media (max-width: 420px) {
+  .container { padding: 0 20px; }
+  .hero-left { padding: 112px 20px 52px; }
+  .stats-grid { grid-template-columns: minmax(0, 1fr); }
+  .region-row { flex-wrap: wrap; gap: 4px 16px; }
+  .region-row > :first-child { min-width: 0; }
 }

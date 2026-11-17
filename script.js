@@ -85,3 +85,15 @@ if (form) form.addEventListener('submit', async e => {
     button.disabled = false;
   }
 });
+
+
+// Team bio cards: open a pop-out bio panel, close with the button, Escape or a click outside
+document.querySelectorAll('[data-bio]').forEach(btn => {
+  const dialog = document.getElementById(btn.dataset.bio);
+  if (!dialog || typeof dialog.showModal !== 'function') return;
+  const close = () => { dialog.close(); };
+  btn.addEventListener('click', () => { dialog.showModal(); document.body.classList.add('bio-is-open'); });
+  dialog.querySelector('.bio-close').addEventListener('click', close);
+  dialog.addEventListener('click', e => { if (e.target === dialog) close(); });
+  dialog.addEventListener('close', () => { document.body.classList.remove('bio-is-open'); btn.focus(); });
+});

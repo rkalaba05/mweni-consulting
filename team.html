@@ -126,15 +126,18 @@
     <div class="section-label">Our Consultants</div>
     <h2 class="section-heading" id="team-heading">Working Alongside the Founder</h2>
     <div class="team-grid">
-      <article class="team-card reveal">
-        <img src="katongo-tiyaonse.jpg" width="640" height="640" loading="lazy" decoding="async"
+      <article class="team-card team-card--bio reveal">
+        <img class="team-photo" src="katongo-tiyaonse.jpg" width="640" height="640" loading="lazy" decoding="async"
              alt="Katongo Tiyaonse smiling, wearing a blue blazer with a Zambian flag pin.">
         <div class="team-card-body">
           <h3>Katongo Tiyaonse</h3>
           <p class="team-role">Consultant</p>
-          <a href="https://www.linkedin.com/in/katongo-tiyaonse-661607193/" target="_blank" rel="noopener" style="display:inline-block; margin-top:16px; line-height:0;">
-            <img src="linkedin.png" width="32" height="32" style="width:32px; height:32px; aspect-ratio:auto;" alt="Katongo Tiyaonse on LinkedIn (opens in a new tab)">
-          </a>
+          <div class="team-actions">
+            <button class="bio-open" type="button" data-bio="bio-katongo" aria-haspopup="dialog">
+              <span>Read bio</span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <a class="team-linkedin" href="https://www.linkedin.com/in/katongo-tiyaonse-661607193/" target="_blank" rel="noopener"><img src="linkedin.png" width="32" height="32" alt="Katongo Tiyaonse on LinkedIn (opens in a new tab)"></a>
+          </div>
         </div>
       </article>
     </div>
@@ -184,6 +187,35 @@
 </section>
 
 </main>
+
+<dialog class="bio-dialog" id="bio-katongo" aria-labelledby="bio-katongo-name">
+  <div class="bio-panel">
+    <button class="bio-close" type="button" aria-label="Close bio">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+    </button>
+    <div class="bio-head">
+      <img class="bio-photo" src="katongo-tiyaonse.jpg" width="120" height="120" alt="">
+      <div>
+        <h2 id="bio-katongo-name">Katongo Tiyaonse</h2>
+        <p class="team-role">Consultant</p>
+        <a class="team-linkedin" href="https://www.linkedin.com/in/katongo-tiyaonse-661607193/" target="_blank" rel="noopener"><img src="linkedin.png" width="32" height="32" alt="Katongo Tiyaonse on LinkedIn (opens in a new tab)"></a>
+      </div>
+    </div>
+    <div class="bio-body">
+      <p>Katongo Tiyaonse is a Doctoral student in the Faculty of Applied Health Sciences at Brock University. Working as a Teaching and Research Assistant in the Department of Sports Management. With over a decade of multifaceted experience in consulting, research, and business development, and as an expert contributor to the Global Observatory for Gender Equality and Sport-Lausanne. With international professional and academic experience across three different continents (North America, Asia, and Africa), Katongo Tiyaonse brings a wealth of skills in building viable personal and business development models. Driven by her passion for research, she continues to collaborate with global research think tanks and partners on policy formulation and evaluation.</p>
+      <p>Katongo Tiyaonse has worked with the World Bank Group on incentivising and scaling up Micro, Small and Medium Enterprises in Zambia. She worked with the Korea Institute of Sports Science to develop a Project Concept Paper for the Mongolian Paralympic Committee. Katongo Tiyaonse also served as a Diversity Pioneer for Seoul National University Diversity Council. Driven by a steadfast commitment to impactful research, she partners with global think tanks to champion equitable and meaningful sporting experiences for women and girls. Currently, Katongo Tiyaonse is a Research Fellow at the Teyeni Sport Research Centre, Zambia&rsquo;s new think tank and national hub for sport-related research, policy dialogue, and sector intelligence.</p>
+      <h3>Scholarships and Awards</h3>
+      <ul class="bio-awards">
+        <li>Leading The Way Graduate Scholarship</li>
+        <li>British Council Climate Change Grant</li>
+        <li>Brock University International Graduate Fellowship</li>
+        <li>Korea-Africa Foundation Award</li>
+        <li>South Korean Ministry of Culture, Sport and Tourism Award (Seoul National University)</li>
+      </ul>
+    </div>
+  </div>
+</dialog>
+
 
 <footer>
   <div class="container">
